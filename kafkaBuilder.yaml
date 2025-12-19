@@ -2,7 +2,7 @@ apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaConnect
 metadata:
   name: ccloud-connect
-  namespace: strimzi-connect
+  namespace: kafka-connect-strimzi
   annotations:
     strimzi.io/use-connector-resources: "true"   # manage connectors via KafkaConnector CRs :contentReference[oaicite:3]{index=3}
 spec:
@@ -15,7 +15,7 @@ spec:
   build:
     output:
       type: docker
-      image: ghcr.io/YOUR_ORG/ccloud-connect-jdbc:1.0.0
+      image: ghcr.io/cloud-focus-tech/kafka-connect-strimzi:1.0.0
       pushSecret: registry-credentials   # create this secret for your registry auth
     plugins:
       - name: jdbc

@@ -11,10 +11,10 @@ The following will guide you through a basic Strimzi Setup.
 ## 1 - Create a namesapces
 
 ```bash
-kubectl create namespace strimzi-connect
-kubectl label ns strimzi-connect pod-security.kubernetes.io/enforce=privileged  
-kubectl label ns strimzi-connect pod-security.kubernetes.io/audit=privileged 
-kubectl label ns strimzi-connect pod-security.kubernetes.io/warn=privileged
+kubectl create namespace kafka-connect-strimzi
+kubectl label ns kafka-connect-strimzi pod-security.kubernetes.io/enforce=privileged  
+kubectl label ns kafka-connect-strimzi pod-security.kubernetes.io/audit=privileged 
+kubectl label ns kafka-connect-strimzi pod-security.kubernetes.io/warn=privileged
 
 kubectl create namespace strimzi-operator
 kubectl label ns strimzi-operator pod-security.kubernetes.io/enforce=privileged  
@@ -44,7 +44,7 @@ The file in this repo (kafkaBuilder.yaml) provides an example of how we can leve
 
 **CONTAINER SECRET**
 ```bash
-    kubectl -n strimzi-connect create secret docker-registry registry-credentials \
+    kubectl -n kafka-connect-strimzi create secret docker-registry registry-credentials \
     --docker-server=ghcr.io \
     --docker-username='<GITHUB_USERNAME>' \
     --docker-password='<GITHUB_TOKEN_WITH_PACKAGES_WRITE>' \
@@ -53,7 +53,7 @@ The file in this repo (kafkaBuilder.yaml) provides an example of how we can leve
 
 **KAFKA SECRET**
 ```bash
-    kubectl -n strimzi-connect create secret generic ccloud-kafka-credentials \
+    kubectl -n kafka-connect-strimzi create secret generic ccloud-kafka-credentials \
     --from-literal=KAFKA_API_KEY='<CCLOUD_KEY>' \
     --from-literal=KAFKA_API_SECRET='<CCLOUD_SECRET>' \
     --from-literal=BOOTSTRAP_SERVERS='<CCLOUD_BOOTSTRAP>:9092'
@@ -71,13 +71,13 @@ The file in this repo (kafkaBuilder.yaml) provides an example of how we can leve
 
 ## 3 - Build the Strimzi Image (to add plugins)
 ```bash
-   docker build -t ghcr.io/cloud-focus-tech/strimzi-connect:0.0.1 .
+   docker build -t ghcr.io/cloud-focus-tech/kafka-connect-strimzi:0.0.1 .
 ```
 
 
 ## 4 - Push the Strimzi Image
 ```bash
-    docker push ghcr.io/cloud-focus-tech/strimzi-connect:0.0.1 
+    docker push ghcr.io/cloud-focus-tech/kafka-connect-strimzi:0.0.1 
 ```
 
 

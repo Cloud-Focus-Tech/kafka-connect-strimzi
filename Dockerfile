@@ -8,23 +8,23 @@ ARG DEBEZIUM_VER=3.3.1.Final
 
 WORKDIR /tmp
 
-# Copy the local ZIP into the image (adjust path/name if needed)
-COPY plugins/confluentinc-connect-transforms-1.6.2.zip /tmp/ct.zip
-COPY plugins/confluentinc-kafka-connect-avro-converter-8.1.0.zip /tmp/cfavro.zip
-COPY plugins/debezium-connector-oracle-3.3.1.Final-plugin.zip /tmp/debezium-oracle.zip
+# # Copy the local ZIP into the image (adjust path/name if needed)
+# COPY plugins/confluentinc-connect-transforms-1.6.2.zip /tmp/ct.zip
+# COPY plugins/confluentinc-kafka-connect-avro-converter-8.1.0.zip /tmp/cfavro.zip
+# COPY plugins/debezium-connector-oracle-3.3.1.Final-plugin.zip /tmp/debezium-oracle.zip
 
 
-RUN mkdir -p /tmp/plugins/debezium-oracle && \
-    unzip -q /tmp/debezium-oracle.zip -d /tmp/plugins/debezium-oracle && \
-    rm -f /tmp/plugins/debezium-oracle/debezium-connector-oracle/ojdbc*.jar 
+# RUN mkdir -p /tmp/plugins/debezium-oracle && \
+#     unzip -q /tmp/debezium-oracle.zip -d /tmp/plugins/debezium-oracle && \
+#     rm -f /tmp/plugins/debezium-oracle/debezium-connector-oracle/ojdbc*.jar 
 
-COPY plugins/ojdbc11-23.9.0.25.07.jar /tmp/plugins/debezium-oracle/debezium-connector-oracle/ojdbc11-23.9.0.25.07.jar
+# COPY plugins/ojdbc11-23.9.0.25.07.jar /tmp/plugins/debezium-oracle/debezium-connector-oracle/ojdbc11-23.9.0.25.07.jar
 
-RUN mkdir -p /tmp/plugins/confluent-transforms && \
-    unzip -q /tmp/ct.zip -d /tmp/plugins/confluent-transforms 
+# RUN mkdir -p /tmp/plugins/confluent-transforms && \
+#     unzip -q /tmp/ct.zip -d /tmp/plugins/confluent-transforms 
 
-RUN mkdir -p /tmp/plugins/confluentinc-kafka-connect-avro-converter && \
-    unzip -q /tmp/cfavro.zip -d /tmp/plugins/confluentinc-kafka-connect-avro-converter 
+# RUN mkdir -p /tmp/plugins/confluentinc-kafka-connect-avro-converter && \
+#     unzip -q /tmp/cfavro.zip -d /tmp/plugins/confluentinc-kafka-connect-avro-converter 
 
 
 
